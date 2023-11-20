@@ -18,11 +18,11 @@
 
 @layer components {
 	.image-container {
-		@apply w-full h-80 rounded-lg overflow-hidden shadow;
+		@apply w-60 h-96 rounded-lg overflow-hidden shadow;
 	}
 
 	.poster {
-		@apply w-full h-80 object-cover rounded-lg hover:scale-105 duration-300;
+		@apply w-60 h-96 object-cover rounded-lg hover:scale-105 duration-300;
 	}
 
 	.movie-container {

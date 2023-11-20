@@ -968,8 +968,8 @@ html {
 }
 
 .image-container {
-  height: 20rem;
-  width: 100%;
+  height: 24rem;
+  width: 15rem;
   overflow: hidden;
   border-radius: 0.5rem;
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -978,8 +978,8 @@ html {
 }
 
 .poster {
-  height: 20rem;
-  width: 100%;
+  height: 24rem;
+  width: 15rem;
   border-radius: 0.5rem;
   -o-object-fit: cover;
      object-fit: cover;
@@ -1033,6 +1033,10 @@ html {
   width: 100vw;
 }
 
+.max-w-7xl {
+  max-width: 80rem;
+}
+
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -1049,8 +1053,8 @@ html {
   justify-content: center;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .px-4 {
@@ -1106,4 +1110,22 @@ html {
 .text-accent {
   --tw-text-opacity: 1;
   color: var(--fallback-a,oklch(var(--a)/var(--tw-text-opacity)));
+}
+
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
