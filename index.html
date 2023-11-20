@@ -12,28 +12,28 @@
 		<!-- Tailwind -->
 		<link rel="stylesheet" href="assets/styles/output.css" />
 	</head>
-	<body class="min-h-screen w-screen px-4 py-6 font-geist">
+	<body class="w-screen min-h-screen px-4 py-6 font-geist">
 		<!-- Header -->
 		<header class="py-4">
-			<h1 class="text-center font-bold font-poppins text-3xl">
+			<h1 class="text-3xl font-bold text-center font-poppins">
 				Movie Search 🎞️
 			</h1>
 		</header>
 
-		<main class="flex flex-col justify-center items-center">
+		<main class="flex flex-col items-center justify-center">
 			<!-- Search -->
 			<input
-				class="input input-bordered mb-6"
+				class="mb-6 input input-bordered"
 				type="text"
 				id="movie-search"
 				placeholder="Search for a movie"
 			/>
 
-			<h2 class="font-bold text-xl mb-4">Results</h2>
+			<h2 class="mb-4 text-xl font-bold">Results</h2>
 			<!-- Results -->
 			<section
 				id="movie-list"
-				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl"
+				class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl"
 			>
 				<!-- Mockup data -->
 				<div class="movie-container">
@@ -50,6 +50,13 @@
 					</p>
 				</div>
 			</section>
+
+			<!-- Pagination -->
+			<div class="flex hidden gap-4" id="pagination">
+				<button id="prev-page" class="btn btn-ghost btn-sm">< Previous</button>
+				<p id="curr-page" class="btn btn-sm btn-ghost no-animation">Page 1</p>
+				<button id="next-page" class="btn btn-ghost btn-sm">Next ></button>
+			</div>
 		</main>
 	</body>
 </html>

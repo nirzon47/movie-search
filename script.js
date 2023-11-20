@@ -1,6 +1,8 @@
 // DOM elements
 const movieSearchInput = document.getElementById('movie-search')
 const movieListSection = document.getElementById('movie-list')
+const paginationDiv = document.getElementById('pagination')
+const prevButton = document.getElementById('prev-button')
 
 // Variables
 let page = 1
@@ -11,6 +13,7 @@ movieSearchInput.addEventListener('input', () => {
 	clearTimeout(timeout)
 
 	timeout = setTimeout(() => {
+		page = 1
 		fetchMovies()
 	}, 1000)
 })
@@ -29,7 +32,7 @@ const fetchMovies = async (page) => {
 	}
 }
 
-const renderMovies = (data, page = 1) => {
+const renderMovies = (data) => {
 	movieListSection.style.opacity = 0
 	const fragment = document.createDocumentFragment()
 
@@ -70,4 +73,22 @@ const renderMovies = (data, page = 1) => {
 	movieListSection.innerHTML = ''
 	movieListSection.appendChild(fragment)
 	movieListSection.style.opacity = 1
+
+	if (data.totalResults > 1) {
+		paginationDiv.classList.remove('hidden')
+	} else {
+		paginationDiv.classList.add('hidden')
+	}
+
+	if (page === 1) {
+		prevButton.disabled = true
+	} else {
+		prevButton.disabled = false
+	}
+
+	if (page === Math.ceil(data.totalResults / 10)) {
+		nextButton.disabled = true
+	} else {
+		nextButton.disabled = false
+	}
 }
