@@ -5,19 +5,44 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Movie Search</title>
 
+		<!-- Scripts -->
+		<script src="api.js" defer></script>
+		<script src="script.js" defer></script>
+
 		<!-- Tailwind -->
 		<link rel="stylesheet" href="assets/styles/output.css" />
 	</head>
 	<body class="min-h-screen w-screen px-4 py-6 font-geist">
+		<!-- Header -->
 		<header class="py-4">
 			<h1 class="text-center font-bold font-poppins text-3xl">
 				Movie Search 🎞️
 			</h1>
 		</header>
-		<main>
-			<input type="text" id="search-movie" />
 
-			<section id="movie-list"></section>
+		<main class="flex flex-col justify-center items-center">
+			<!-- Search -->
+			<input
+				class="input input-bordered mb-6"
+				type="text"
+				id="movie-search"
+				placeholder="Search for a movie"
+			/>
+
+			<h2 class="font-bold text-xl">Results</h2>
+			<!-- Results -->
+			<section id="movie-list">
+				<!-- Mockup data -->
+				<div>
+					<img
+						class="w-52 h-80 object-cover"
+						src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+						alt="test"
+					/>
+					<h3>Inception</h3>
+					<p>Released <span>2010</span></p>
+				</div>
+			</section>
 		</main>
 	</body>
 </html>
