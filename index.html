@@ -29,18 +29,22 @@
 				placeholder="Search for a movie"
 			/>
 
-			<h2 class="font-bold text-xl">Results</h2>
+			<h2 class="font-bold text-xl mb-4">Results</h2>
 			<!-- Results -->
-			<section id="movie-list">
+			<section id="movie-list" class="grid grid-cols-1 gap-4">
 				<!-- Mockup data -->
-				<div>
-					<img
-						class="w-52 h-80 object-cover"
-						src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
-						alt="test"
-					/>
-					<h3>Inception</h3>
-					<p>Released <span>2010</span></p>
+				<div class="movie-container">
+					<div class="image-container">
+						<img
+							class="poster"
+							src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
+							alt="test"
+						/>
+					</div>
+					<h3 class="movie-heading">Inception</h3>
+					<p class="text-sm">
+						Released <span class="font-semibold text-accent">2010</span>
+					</p>
 				</div>
 			</section>
 		</main>

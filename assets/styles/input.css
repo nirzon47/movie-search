@@ -15,3 +15,21 @@
 		font-weight: 400, 500, 600, 700;
 	}
 }
+
+@layer components {
+	.image-container {
+		@apply w-full h-80 rounded-lg overflow-hidden shadow;
+	}
+
+	.poster {
+		@apply w-full h-80 object-cover rounded-lg hover:scale-105 duration-300;
+	}
+
+	.movie-container {
+		@apply flex flex-col items-center justify-center;
+	}
+
+	.movie-heading {
+		@apply text-lg font-semibold py-1 text-primary;
+	}
+}

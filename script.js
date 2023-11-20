@@ -16,10 +16,14 @@ movieSearchInput.addEventListener('input', () => {
 
 // Functions
 const fetchMovies = async (page) => {
-	const response = await fetch(
-		`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieSearchInput.value}&type=movie&page=${page}`
-	)
+	try {
+		const response = await fetch(
+			`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieSearchInput.value}&type=movie&page=${page}`
+		)
 
-	const data = await response.json()
-	console.log(data)
+		const data = await response.json()
+		renderMovies(data)
+	} catch (error) {
+		console.log(error)
+	}
 }
