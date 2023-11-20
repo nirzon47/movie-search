@@ -3,6 +3,8 @@ const movieSearchInput = document.getElementById('movie-search')
 const movieListSection = document.getElementById('movie-list')
 const paginationDiv = document.getElementById('pagination')
 const prevButton = document.getElementById('prev-button')
+const nextButton = document.getElementById('next-button')
+const currentPage = document.getElementById('current-page')
 
 // Variables
 let page = 1
@@ -19,6 +21,7 @@ movieSearchInput.addEventListener('input', () => {
 })
 
 // Functions
+
 const fetchMovies = async (page) => {
 	try {
 		const response = await fetch(
@@ -91,4 +94,6 @@ const renderMovies = (data) => {
 	} else {
 		nextButton.disabled = false
 	}
+
+	currentPage = page
 }
