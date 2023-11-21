@@ -24,7 +24,7 @@ movieSearchInput.addEventListener('input', () => {
 		fetchMovies()
 
 		console.log('added')
-	}, 1000)
+	}, 800)
 })
 
 prevButton.addEventListener('click', () => {
@@ -70,22 +70,16 @@ const renderMovies = (data) => {
 	data.Search.forEach((movie) => {
 		const movieContainerDiv = document.createElement('div')
 		movieContainerDiv.classList.add('movie-container')
+		movieContainerDiv.id = movie.imdbID
 
 		const imageContainerDiv = document.createElement('div')
 		imageContainerDiv.classList.add('image-container')
 
 		if (movie.Poster === 'N/A') {
-			imageContainerDiv.innerHTML = `<img
-                class="poster"
-                src="https://via.placeholder.com/300x450"
-                alt="${movie.Title}"
-            />`
+			imageContainerDiv.innerHTML = `<img class="poster" src="https://via.placeholder.com/300x450" alt="${movie.Title}" />
+                                            `
 		} else {
-			imageContainerDiv.innerHTML = `<img
-                class="poster"
-                src="${movie.Poster}"
-                alt="${movie.Title}"
-            />`
+			imageContainerDiv.innerHTML = `<img class="poster" src="${movie.Poster}" alt="${movie.Title}" />`
 		}
 
 		const subtitleDiv = document.createElement('div')
@@ -128,12 +122,12 @@ const renderMovies = (data) => {
 const toggleLoading = {
 	addLoading: () => {
 		Array.from(loadingElement).forEach((item) => {
-			item.classList.remove('hidden')
+			item.classList.remove('opacity-0')
 		})
 	},
 	removeLoading: () => {
 		Array.from(loadingElement).forEach((item) => {
-			item.classList.add('hidden')
+			item.classList.add('opacity-0')
 		})
 	},
 }

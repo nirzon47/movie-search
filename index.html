@@ -30,7 +30,7 @@
 			/>
 
 			<!-- Loading -->
-			<div class="hidden block w-10 mx-auto my-4 loading loading-ball"></div>
+			<div class="block w-10 m-2 mx-auto opacity-0 loading loading-ball"></div>
 
 			<!-- Error -->
 			<p class="hidden text-xl font-bold text-center text-error" id="error"></p>
@@ -53,20 +53,43 @@
 					<p class="text-sm">
 						Released <span class="font-semibold text-accent">2010</span>
 					</p>
+					<button
+						class="my-1 btn btn-secondary btn-sm"
+						onclick="details.showModal()"
+					>
+						View Details
+					</button>
 				</div>
 			</section>
 
 			<!-- Loading -->
-			<div class="hidden block w-10 mx-auto my-4 loading loading-ball"></div>
+			<div class="block w-10 m-2 mx-auto opacity-0 loading loading-ball"></div>
 
 			<!-- Pagination -->
-			<div class="flex hidden gap-4" id="pagination">
-				<button id="prev-page" class="btn btn-ghost btn-sm"><</button>
-				<p id="current-page" class="btn btn-sm btn-ghost no-animation">
-					Page 1
-				</p>
-				<button id="next-page" class="btn btn-ghost btn-sm">></button>
+			<div class="hidden join" id="pagination">
+				<button class="join-item btn" id="prev-page">«</button>
+				<button class="join-item btn" id="current-page"></button>
+				<button class="join-item btn" id="next-page">»</button>
 			</div>
 		</main>
+
+		<!-- Info modal -->
+		<dialog id="details" class="modal">
+			<div class="w-64 font-mono text-lg modal-box">
+				<p>Title: <span id="title"></span></p>
+				<p>Year: <span id="year"></span></p>
+				<p>Released: <span id="released"></span></p>
+				<p>Runtime: <span id="runtime"></span></p>
+				<p>Genre: <span id="genre"></span></p>
+				<p>Director: <span id="director"></span></p>
+				<p>Writers: <span id="writers"></span></p>
+				<p>Actors: <span id="actors"></span></p>
+				<p>Plot: <span id="plot"></span></p>
+				<p>Rating: <span id="rating"></span></p>
+			</div>
+			<form method="dialog" class="modal-backdrop">
+				<button>close</button>
+			</form>
+		</dialog>
 	</body>
 </html>
