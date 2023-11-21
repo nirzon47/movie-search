@@ -1,9 +1,10 @@
 // DOM elements
 const movieSearchInput = document.getElementById('movie-search')
 const movieListSection = document.getElementById('movie-list')
+
 const paginationDiv = document.getElementById('pagination')
-const prevButton = document.getElementById('prev-button')
-const nextButton = document.getElementById('next-button')
+const prevButton = document.getElementById('prev-page')
+const nextButton = document.getElementById('next-page')
 const currentPage = document.getElementById('current-page')
 
 // Variables
@@ -20,15 +21,30 @@ movieSearchInput.addEventListener('input', () => {
 	}, 1000)
 })
 
+prevButton.addEventListener('click', () => {
+	if (page > 1) {
+		page--
+		fetchMovies()
+	}
+})
+
+nextButton.addEventListener('click', () => {
+	if (page < 100) {
+		page++
+		console.log(page)
+		fetchMovies()
+	}
+})
+
 // Functions
 
-const fetchMovies = async (page) => {
+const fetchMovies = async () => {
 	try {
 		const response = await fetch(
 			`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieSearchInput.value}&type=movie&page=${page}`
 		)
 		const data = await response.json()
-
+		console.log(data)
 		renderMovies(data)
 	} catch (error) {
 		console.log(error)
@@ -95,5 +111,5 @@ const renderMovies = (data) => {
 		nextButton.disabled = false
 	}
 
-	currentPage = page
+	currentPage.textContent = page
 }
