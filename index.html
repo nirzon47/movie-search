@@ -29,6 +29,12 @@
 				placeholder="Search for a movie"
 			/>
 
+			<!-- Loading -->
+			<div class="hidden block w-10 mx-auto my-4 loading loading-ball"></div>
+
+			<!-- Error -->
+			<p class="hidden text-xl font-bold text-center text-error" id="error"></p>
+
 			<!-- Results -->
 			<section
 				id="movie-list"
@@ -50,13 +56,16 @@
 				</div>
 			</section>
 
+			<!-- Loading -->
+			<div class="hidden block w-10 mx-auto my-4 loading loading-ball"></div>
+
 			<!-- Pagination -->
 			<div class="flex hidden gap-4" id="pagination">
-				<button id="prev-page" class="btn btn-ghost btn-sm">< Previous</button>
+				<button id="prev-page" class="btn btn-ghost btn-sm"><</button>
 				<p id="current-page" class="btn btn-sm btn-ghost no-animation">
 					Page 1
 				</p>
-				<button id="next-page" class="btn btn-ghost btn-sm">Next ></button>
+				<button id="next-page" class="btn btn-ghost btn-sm">></button>
 			</div>
 		</main>
 	</body>

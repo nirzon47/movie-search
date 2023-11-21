@@ -2,6 +2,9 @@
 const movieSearchInput = document.getElementById('movie-search')
 const movieListSection = document.getElementById('movie-list')
 
+const errorElement = document.getElementById('error')
+const loadingElement = document.getElementsByClassName('loading')
+
 const paginationDiv = document.getElementById('pagination')
 const prevButton = document.getElementById('prev-page')
 const nextButton = document.getElementById('next-page')
@@ -13,11 +16,14 @@ let page = 1
 // Event listeners
 let timeout
 movieSearchInput.addEventListener('input', () => {
+	toggleLoading.addLoading()
 	clearTimeout(timeout)
 
 	timeout = setTimeout(() => {
 		page = 1
 		fetchMovies()
+
+		console.log('added')
 	}, 1000)
 })
 
@@ -39,20 +45,26 @@ nextButton.addEventListener('click', () => {
 // Functions
 
 const fetchMovies = async () => {
-	try {
-		const response = await fetch(
-			`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieSearchInput.value}&type=movie&page=${page}`
-		)
-		const data = await response.json()
-		console.log(data)
+	toggleLoading.addLoading()
+
+	const response = await fetch(
+		`https://www.omdbapi.com/?apikey=${API_KEY}&s=${movieSearchInput.value}&type=movie&page=${page}`
+	)
+	const data = await response.json()
+
+	if (data.Response === 'False') {
+		errorElement.classList.remove('hidden')
+		errorElement.innerText = data.Error
+	} else {
+		errorElement.classList.add('hidden')
 		renderMovies(data)
-	} catch (error) {
-		console.log(error)
+		window.scrollTo({ top: 0, behavior: 'smooth' })
 	}
+
+	toggleLoading.removeLoading()
 }
 
 const renderMovies = (data) => {
-	movieListSection.style.opacity = 0
 	const fragment = document.createDocumentFragment()
 
 	data.Search.forEach((movie) => {
@@ -91,7 +103,6 @@ const renderMovies = (data) => {
 
 	movieListSection.innerHTML = ''
 	movieListSection.appendChild(fragment)
-	movieListSection.style.opacity = 1
 
 	if (data.totalResults > 1) {
 		paginationDiv.classList.remove('hidden')
@@ -112,4 +123,17 @@ const renderMovies = (data) => {
 	}
 
 	currentPage.textContent = page
+}
+
+const toggleLoading = {
+	addLoading: () => {
+		Array.from(loadingElement).forEach((item) => {
+			item.classList.remove('hidden')
+		})
+	},
+	removeLoading: () => {
+		Array.from(loadingElement).forEach((item) => {
+			item.classList.add('hidden')
+		})
+	},
 }
