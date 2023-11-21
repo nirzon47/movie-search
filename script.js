@@ -10,6 +10,19 @@ const prevButton = document.getElementById('prev-page')
 const nextButton = document.getElementById('next-page')
 const currentPage = document.getElementById('current-page')
 
+const modalTitle = document.getElementById('title')
+const modalYear = document.getElementById('year')
+const modalReleased = document.getElementById('released')
+const modalRuntime = document.getElementById('runtime')
+const modalGenre = document.getElementById('genre')
+const modalDirector = document.getElementById('director')
+const modalWriters = document.getElementById('writers')
+const modalActors = document.getElementById('actors')
+const modalPlot = document.getElementById('plot')
+const modalRating = document.getElementById('rating')
+
+const modalButton = document.getElementsByClassName('modal-button')
+
 // Variables
 let page = 1
 
@@ -42,6 +55,14 @@ nextButton.addEventListener('click', () => {
 	}
 })
 
+const addListenersToModalButtons = () => {
+	Array.from('modalButton').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			fetchMovieDetails(btn.id)
+		})
+	})
+}
+
 // Functions
 
 const fetchMovies = async () => {
@@ -70,7 +91,6 @@ const renderMovies = (data) => {
 	data.Search.forEach((movie) => {
 		const movieContainerDiv = document.createElement('div')
 		movieContainerDiv.classList.add('movie-container')
-		movieContainerDiv.id = movie.imdbID
 
 		const imageContainerDiv = document.createElement('div')
 		imageContainerDiv.classList.add('image-container')
@@ -85,9 +105,9 @@ const renderMovies = (data) => {
 		const subtitleDiv = document.createElement('div')
 		subtitleDiv.classList.add('text-center')
 		subtitleDiv.innerHTML = `<h3 class="movie-heading">${movie.Title}</h3>
-                                    <p class="text-sm">
-                                    Released <span class="font-semibold text-accent">${movie.Year}</span>
-                                    </p>`
+                                    <p class="text-sm">Released <span class="font-semibold text-accent">${movie.Year}</span></p>
+                                    <button class="my-1 btn btn-secondary btn-sm modal-button" onclick="fetchMovieDetails('${movie.imdbID}')">View Details</button>
+                                    `
 
 		movieContainerDiv.appendChild(imageContainerDiv)
 		movieContainerDiv.appendChild(subtitleDiv)
@@ -130,4 +150,26 @@ const toggleLoading = {
 			item.classList.add('opacity-0')
 		})
 	},
+}
+
+const fetchMovieDetails = async (id) => {
+	const response = await fetch(
+		`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
+	)
+	const data = await response.json()
+
+	if (data.Response === 'True') {
+		modalTitle.textContent = data.Title
+		modalYear.textContent = data.Year
+		modalReleased.textContent = data.Released
+		modalRating.textContent = data.imdbRating
+		modalPlot.textContent = data.Plot
+		modalActors.textContent = data.Actors
+		modalDirector.textContent = data.Director
+		modalWriters.textContent = data.Writer
+		modalGenre.textContent = data.Genre
+		modalRuntime.textContent = data.Runtime
+
+		details.showModal()
+	}
 }

@@ -1767,6 +1767,10 @@ html {
   width: 16rem;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1797,6 +1801,10 @@ html {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 
 .px-4 {
